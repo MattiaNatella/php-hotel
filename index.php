@@ -40,9 +40,6 @@ $hotels = [
 
 ];
 
-
-$parcheggio = $_GET['parcheggio'] ? $_GET['parcheggio'] : 'no_parking';
-$voto = $_GET['voto'] ? $_GET['voto'] : 'no_voto';
 ?>
 
 
@@ -92,6 +89,9 @@ $voto = $_GET['voto'] ? $_GET['voto'] : 'no_voto';
         <tbody>
             <?php
 
+            $parcheggio = isset($_GET['parcheggio']) ? $_GET['parcheggio'] : 'no_parking';
+            $voto = isset($_GET['voto']) ? $_GET['voto'] : 'no_voto';
+
             foreach ($hotels as $hotel) {
                 echo "<tr>";
                 foreach ($hotel as $key => $value) {
@@ -105,8 +105,6 @@ $voto = $_GET['voto'] ? $_GET['voto'] : 'no_voto';
                     } else if ($parcheggio != 'no_parking' && $voto != 'no_voto' && $hotel['vote'] >= $voto && $hotel['parking'] == 'true') {
                         echo "<td>$value</td>";
                     }
-
-
                 }
             }
             ;
