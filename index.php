@@ -40,6 +40,9 @@ $hotels = [
 
 ];
 
+
+$parcheggio = $_GET['parcheggio'] ? $_GET['parcheggio'] : 'no_parking';
+
 ?>
 
 
@@ -59,6 +62,17 @@ $hotels = [
 
 <body>
     <h1>BENVENUTO IN PHP HOTEL!</h1>
+
+
+    <h2>Filtri di ricerca:</h2>
+
+    <form action="./index.php" method="get">
+        <label for="parcheggio">Parcheggio</label>
+        <input type="checkbox" name="parcheggio" id="parcheggio">
+        <button type="submit">Ricerca</button>
+
+    </form>
+
     <h2>Qui troverai la lista completa degli Hotel:</h2>
 
 
@@ -79,9 +93,13 @@ $hotels = [
             foreach ($hotels as $hotel) {
                 echo "<tr>";
                 foreach ($hotel as $key => $value) {
-                    echo " 
-                    <td>$value</td>
-                ";
+
+                    if ($parcheggio == 'no_parking') {
+                        echo "<td>$value</td>";
+                    } else if ($parcheggio != 'no_parking' && $hotel['parking'] == 'true') {
+                        echo "<td>$value</td>";
+                    }
+
 
                 }
             }
