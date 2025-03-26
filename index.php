@@ -42,7 +42,7 @@ $hotels = [
 
 
 $parcheggio = $_GET['parcheggio'] ? $_GET['parcheggio'] : 'no_parking';
-
+$voto = $_GET['voto'] ? $_GET['voto'] : 'no_voto';
 ?>
 
 
@@ -69,6 +69,8 @@ $parcheggio = $_GET['parcheggio'] ? $_GET['parcheggio'] : 'no_parking';
     <form action="./index.php" method="get">
         <label for="parcheggio">Parcheggio</label>
         <input type="checkbox" name="parcheggio" id="parcheggio">
+        <label>Voto</label>
+        <input type="text" placeholder="Inserisci voto" name="voto">
         <button type="submit">Ricerca</button>
 
     </form>
@@ -94,9 +96,13 @@ $parcheggio = $_GET['parcheggio'] ? $_GET['parcheggio'] : 'no_parking';
                 echo "<tr>";
                 foreach ($hotel as $key => $value) {
 
-                    if ($parcheggio == 'no_parking') {
+                    if ($parcheggio == 'no_parking' && $voto == 'no_voto') {
                         echo "<td>$value</td>";
-                    } else if ($parcheggio != 'no_parking' && $hotel['parking'] == 'true') {
+                    } else if ($parcheggio != 'no_parking' && $voto == 'no_voto' && $hotel['parking'] == 'true') {
+                        echo "<td>$value</td>";
+                    } else if ($parcheggio == 'no_parking' && $voto != 'no_voto' && $hotel['vote'] >= $voto) {
+                        echo "<td>$value</td>";
+                    } else if ($parcheggio != 'no_parking' && $voto != 'no_voto' && $hotel['vote'] >= $voto && $hotel['parking'] == 'true') {
                         echo "<td>$value</td>";
                     }
 
