@@ -48,6 +48,10 @@ $hotels = [
 <html lang="en">
 
 <head>
+    <!-- BOOTSTRAP -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css'
+        integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
+        crossorigin='anonymous' />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP - Hotek</title>
@@ -57,19 +61,36 @@ $hotels = [
     <h1>BENVENUTO IN PHP HOTEL!</h1>
     <h2>Qui troverai la lista completa degli Hotel:</h2>
 
-    <?php
 
-    foreach ($hotels as $hotel) {
-        foreach ($hotel as $key => $value) {
-            echo "$key: $value";
-            echo "<br>";
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Parcheggio</th>
+                <th scope="col">Voto</th>
+                <th scope="col">Distanza dal centro</th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 
+            foreach ($hotels as $hotel) {
+                echo "<tr>";
+                foreach ($hotel as $key => $value) {
+                    echo " 
+                    <td>$value</td>
+                ";
 
-        }
-    }
-    ;
+                }
+            }
+            ;
+            echo "</tr>";
 
-    ?>
+            ?>
+        </tbody>
+    </table>
 
 </body>
 
